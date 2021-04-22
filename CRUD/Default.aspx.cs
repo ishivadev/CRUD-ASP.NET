@@ -69,7 +69,19 @@ public partial class _Default : Page
         d.Fill(dt);
         GridView1.DataSource = dt;
         GridView1.DataBind();
-
-
+    }
+    
+     protected void Button5_Click(object sender, EventArgs e)
+    {
+        con.Open();
+        SqlCommand com = new SqlCommand("select * from StudentInfo_Tab where StudentID = '" + int.Parse(TextBox1.Text) + "'", con);
+        SqlDataReader r = com.ExecuteReader();
+        while(r.Read())
+        {
+            TextBox2.Text = r.GetValue(1).ToString();
+            DropDownList1.SelectedValue = r.GetValue(2).ToString();
+            TextBox3.Text = r.GetValue(3).ToString();
+            TextBox4.Text = r.GetValue(4).ToString();        
+        }  
     }
 }
